@@ -41,11 +41,11 @@ spec:
           - containerPort: 3001
             name: webserver
           volumeMounts:
-            - name:  nginx_volume
+            - name:  nginxvolume
               mountPath: /usr/share/nginx/html
   volumeClaimTemplates:
   - metadata:
-      name: nginx_volume
+      name: nginxvolume
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "my-storage-class"
