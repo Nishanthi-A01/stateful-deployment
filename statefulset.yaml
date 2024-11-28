@@ -23,16 +23,13 @@ spec:
               value: admin
             - name: NGINX_PASS
               value: password
+          ports:
+          - containerPort: 3001
+            name: webserver
           volumeMounts:
             - name:  nginx_volume
-              mountPath: /data/app
-      volumes:
-        - name: nginx_volume
-          persistentVolumeClaim:
-            claimName: "nginx-pvc"
+              mountPath: /usr/share/nginx/html
     volumeClaimTemplates:
-      - apiVersion: v1
-        kind: PersistentVolumeClaim
       - metadata:
           name: "nginx-pvc"
         spec:
