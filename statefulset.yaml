@@ -31,12 +31,14 @@ spec:
           persistentVolumeClaim:
             claimName: "nginx-pvc"
     volumeClaimTemplates:
-        - metadata:
-            name: "nginx-pvc"
-          spec:
-            accessModes: ["ReadWriteOnce"]
-            StorageClassName: test-storage
-            resource:
-              requests:
-                storage: 1Gi
+      - apiVersion: v1
+        kind: PersistentVolumeClaim
+      - metadata:
+          name: "nginx-pvc"
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          StorageClassName: test-storage
+          resource:
+            requests:
+              storage: 1Gi
          
