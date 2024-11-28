@@ -41,7 +41,7 @@ spec:
           - containerPort: 3001
             name: webserver
           volumeMounts:
-            - name:  nginxkubectl get volumesnapshotclassesvolume
+            - name:  nginxvolume
               mountPath: /usr/share/nginx/html
   volumeClaimTemplates:
   - metadata:
