@@ -26,18 +26,11 @@ spec:
           volumeMounts:
             - name:  nginx_volume
               mountPath: /data/app
-          resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "1"
-            memory: 1Gi
       volumes:
         - name: nginx_volume
           persistentVolumeClaim:
             claimName: "nginx-pvc"
-      volumeClaimTemplates:
+    volumeClaimTemplates:
         - metadata:
             name: "nginx-pvc"
           spec:
