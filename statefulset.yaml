@@ -41,14 +41,14 @@ spec:
           - containerPort: 3001
             name: webserver
           volumeMounts:
-            - name:  nginxvolume
+            - name:  nginxkubectl get volumesnapshotclassesvolume
               mountPath: /usr/share/nginx/html
   volumeClaimTemplates:
   - metadata:
       name: nginxvolume
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "my-storage-class"
+      storageClassName: csi-hostpath-sc
       resources:
         requests:
           storage: 1Gi
