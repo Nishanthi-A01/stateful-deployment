@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name:  nginx-app
+  labels:
+    name:  nginx-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-app  
+  template:
+    metadata:
+      labels:
+        name:  nginx-app
+    spec:
+      containers:
+        - image: nginx:1.19.0
+          name: nginx-app
+          env:
+            - name: NGINX_USER
+              value: admin
+            - name: NGINX_PASS
+              value: password
+          volumeMounts:
+            - name:  nginx_volume
+              mountPath: /data/app
+          resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+      volumes:
+        - name: nginx_volume
+          persistentVolumeClaim:
+            claimName: "nginx-pvc"
+      volumeClaimTemplates:
+        - metadata:
+            name: "nginx-pvc"
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            StorageClassName: test-storage
+            resource:
+              requests:
+                storage: 1Gi
+         
