@@ -34,9 +34,9 @@ spec:
           image: nginx:1.19.0
           env:
             - name: NGINX_USER
-              value: admin
+              value: "admin"
             - name: NGINX_PASS
-              value: password
+              value: "password"
           ports:
           - containerPort: 3001
             name: webserver
@@ -45,7 +45,7 @@ spec:
               mountPath: /usr/share/nginx/html
   volumeClaimTemplates:
   - metadata:
-      name: "nginx-pvc"
+      name: "nginx_volume"
     spec:
       accessModes: ["ReadWriteOnce"]
       StorageClassName: test-storage
