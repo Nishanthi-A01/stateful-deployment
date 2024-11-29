@@ -32,8 +32,6 @@ spec:
       containers:
         - name: nginx-app
           image: bnishanthi/nginx-deployment:1.0
-      imagePullSecrets:
-        - name: dockerhub-credential
           env:
             - name: NGINX_USER
               value: "admin"
