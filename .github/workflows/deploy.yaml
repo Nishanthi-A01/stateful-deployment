@@ -46,8 +46,8 @@ jobs:
       - name: start minikube
         id: minikube
         uses: medyagh/setup-minikube@latest
-      - name: Try the cluster!
-        run: kubectl get all
+      - name: Deploy in k8s cluster 
+        run: kubectl apply -f statefulset.yaml
        
 
           
