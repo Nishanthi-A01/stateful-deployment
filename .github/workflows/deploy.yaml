@@ -43,12 +43,11 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Deploy on k8s cluster
-        uses: actions-hub/kubectl@master
-        env:
-            KUBE_CONFIG: ${{ env.KUBE_CONFIG }}
-        with:
-           args: get all
+      - name: start minikube
+        id: minikube
+        uses: medyagh/setup-minikube@latest
+      - name: Try the cluster!
+        run: kubectl get all
+       
 
           
