@@ -43,11 +43,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: start minikube
-        id: minikube
-        uses: medyagh/setup-minikube@latest
-      - name: Deploy in k8s cluster 
-        run: kubectl apply -f ./statefulset.yaml
+      - name: set context
+        run: |
+          kubectl config set-context minikube
+          kubectl config set-context --current --namespace=gpluswfm
+      - name: k8s deployment
+        run: 
+          kubectl apply -f statefulset.yaml
+        
        
 
           
