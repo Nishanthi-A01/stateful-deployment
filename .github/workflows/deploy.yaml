@@ -46,7 +46,7 @@ jobs:
       - name: set context
         run: |
           kubectl config set-context minikube
-          kubectl config set-context --current --namespace=gpluswfm
+          kubectl config set-context --current --namespace=default
       - name: k8s deployment
         run: 
           kubectl apply -f statefulset.yaml
