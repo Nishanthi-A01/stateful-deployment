@@ -53,7 +53,7 @@ jobs:
           kubectl get all 
       - name: Status before backup restart
         run: |
-          sleep 60 && \
+          sleep 120 && \
           kubectl get pods >> before_restart_status.txt && \
           cat before_restart_status.txt && \
           if awk '$1 == "nginx-deployment-0"{print $3}' before_restart_status.txt | grep "Running"; then \
