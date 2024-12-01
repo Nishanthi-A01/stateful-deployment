@@ -45,8 +45,8 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: set context
         run: |
+          minikube start 
           kubectl config set-context minikube
-          kubectl config set-context --current --namespace=default
       - name: k8s deployment
         run: 
           kubectl apply -f statefulset.yaml
