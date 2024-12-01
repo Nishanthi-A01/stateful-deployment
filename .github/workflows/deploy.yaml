@@ -48,9 +48,17 @@ jobs:
           minikube start 
           kubectl config set-context minikube
       - name: k8s deployment
-        run: 
+        run:  |
           kubectl apply -f statefulset.yaml
-        
+          kubectl get all 
+      - name: Status before backup restart
+      run: |
+        kubectl get pods >> before_restart_status.txt && \
+        cat before_restart_status.txt && \
+        if awk '$1 == "nginx-deployment-0"{print $3}' before_restart_status.txt | grep "Running"; then \
+           echo "pod is running properly"; else echo "ERROR: pod is not running properly" 1>&2; exit 1; fi; \
+        if awk '$2 == "nginx-deployment-1"{print $3}' before_restart_status.txt | grep "Running"; then \
+           echo "pod is running properly"; else echo "ERROR: pod is not running properly" 1>&2; exit 1; fi; \
        
 
           
