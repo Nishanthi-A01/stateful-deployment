@@ -46,6 +46,7 @@ jobs:
       - name: set context
         run: |
           minikube start --extra-config=kubelet.cgroup-driver=systemd
+      - name: k8s deployment
         run:  |
           kubectl apply -f statefulset.yaml
           kubectl get all 
