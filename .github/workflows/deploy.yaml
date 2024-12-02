@@ -45,7 +45,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: set context
         run: |
-          minikube start 
+          minikube start --feature-gates=CSIInlineVolume=true
           kubectl config set-context minikube
       - name: k8s deployment
         run:  |
