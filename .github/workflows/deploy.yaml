@@ -51,6 +51,7 @@ jobs:
         run:  |
           kubectl apply -f statefulset.yaml
           kubectl get all 
+          kubectl get events
       - name: Status before backup restart
         run: |
           sleep 120 && \
