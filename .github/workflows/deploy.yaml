@@ -33,6 +33,11 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: bnishanthi/nginx-deployment
+          tags: |
+            type=ref,event=branch
+            type=ref,event=push
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
 
       - name: Build and push Docker image
         id: push
@@ -41,7 +46,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}  
           labels: ${{ steps.meta.outputs.labels }}
       - name: set context
         run: |
